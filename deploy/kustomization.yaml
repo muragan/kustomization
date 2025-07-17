@@ -22,12 +22,18 @@ patches:
       - op: replace
         path: /spec/replicas
         value: 3
-# stragic merge Patching..
-patchesStrategicMerge:
-  - |-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
+    # File patches
+  - target:
+      kind: Deployment
       name: nginxdep
-    spec:
-      replicas: 4
+    path: patches/patch-file.yaml
+
+# stragic merge Patching..
+# patchesStrategicMerge:
+#   - |-
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: nginxdep
+#     spec:
+#       replicas: 4

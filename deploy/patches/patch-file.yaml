@@ -1,0 +1,5 @@
+- op: replace
+  path: /spec/template/spec/containers/0/
+  value:
+    name: newNginx
+    image: nginx:1.19.6
