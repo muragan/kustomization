@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxdep
+  namespace: fluxcdtutorial
+  labels:
+    name: nginx-deploy
+spec:
+  selector:
+    matchLabels:
+      app: nginxpod
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: nginxpod
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
