@@ -10,3 +10,24 @@ namePrefix: mgm-
 resources:
   - deploy.yaml
   - service.yaml
+images:
+  - name: nginx
+    newName: nginx
+    newTag: 1.19.6
+patches:
+  - target:
+      kind: Deployment
+      name: nginxdep
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3
+# stragic merge Patching..
+patchesStrategicMerge:
+  - |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginxdep
+    spec:
+      replicas: 4
