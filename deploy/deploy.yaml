@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginxdep
-  namespace: fluxcdtutorial
+  # namespace: fluxcdtutorial
   labels:
     name: nginx-deploy
 spec:
